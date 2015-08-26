@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author      Tsvetan Stoychev <t.stoychev@extendix.com>
+ * @website     http://www.extendix.com
+ * @license     http://opensource.org/licenses/osl-3.0.php Open Software Licence 3.0 (OSL-3.0)
+ */
+-->
+<config>
+	<modules>
+		<Extendix_ValidateCartMultipleQty>
+			<version>1.0.0</version>
+		</Extendix_ValidateCartMultipleQty>
+	</modules>
+	<global>
+		<models>
+			<extendix_validatecartmultipleqty>
+				<class>Extendix_ValidateCartMultipleQty_Model</class>
+			</extendix_validatecartmultipleqty>
+		</models>
+        <helpers>
+			<extendix_validatecartmultipleqty>
+				<class>Extendix_ValidateCartMultipleQty_Helper</class>
+			</extendix_validatecartmultipleqty>
+		</helpers>
+	</global>
+    <frontend>
+        <events>
+			<sales_quote_load_after>
+				<observers>
+					<extendix_validate_cart_total_multiple_qty>
+						<type>singleton</type>
+						<class>extendix_validatecartmultipleqty/observer</class>
+						<method>validateCartTotalMultipleQty</method>
+					</extendix_validate_cart_total_multiple_qty>
+				</observers>
+			</sales_quote_load_after>
+		</events>
+	</frontend>
+    <default>
+        <sales>
+            <extendix_validatecartmultipleqty>
+                <enabled>0</enabled>
+                <message_template>You can only order in multiples of %s. Please review your cart before checking out.</message_template>
+            </extendix_validatecartmultipleqty>
+        </sales>
+    </default>
+</config>
